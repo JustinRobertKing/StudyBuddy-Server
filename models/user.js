@@ -1,6 +1,10 @@
 let bcrypt = require('bcryptjs');
 let mongoose = require('mongoose');
 
+let surveyResultsSchema = new mongoose.Schema({
+  butts: [String]
+})
+
 let userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -20,7 +24,14 @@ let userSchema = new mongoose.Schema({
     required: true,
     minlength: 6,
     maxlength: 99
-  }
+  }, 
+  classes: [String],
+  major: {
+    type: String,
+    required: true
+  },
+  img: String,
+  surveyResults: surveyResultsSchema
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user

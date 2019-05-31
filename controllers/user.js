@@ -7,7 +7,7 @@ const db = require('../models')
 // GET /user route - get user info
 router.get('/', (req, res) => {
 	db.User.findOne({
-		_id: req.user._id
+		_id: req.body._id
 	})
 	.then(user => {
 		console.log('user: ', user)
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 // TODO update input with survey data
 router.put('/survey', (req, res) => {
 	db.User.findOneAndUpdate({
-		_id: req.user._id
+		_id: req.body._id
 	},
 		req.body,
 		{ new: true, useFindAndModify: false }
@@ -41,12 +41,13 @@ router.put('/survey', (req, res) => {
 // PUT /user/bio
 // TODO update with actual bio info
 router.put('/bio', (req, res) => {
+	console.log(req.body)
 	db.User.findOneAndUpdate({
-		_id: req.user._id
+		_id: req.body._id
 	},
 		req.body,
 		{ new: true, useFindAndModify: false }
-	)
+	)	
 	.then(updatedUser => {
 		console.log('updated user: ', updatedUser)
 		res.send({ updatedUser })
@@ -60,7 +61,7 @@ router.put('/bio', (req, res) => {
 // PUT /user/image route - update profile pic
 router.put('/image', (req, res) => {
 	db.User.findOneAndUpdate({
-		_id: req.user._id
+		_id: req.body._id
 	},{
 		img: req.body.img,
 	},
@@ -77,3 +78,5 @@ router.put('/image', (req, res) => {
 })
 
 module.exports = router;
+
+

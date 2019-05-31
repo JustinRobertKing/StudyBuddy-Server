@@ -17,6 +17,10 @@ let sessionSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	time: String,
+	date: String,
+	senderComment: String,
+	recipientComment: String,
 	accepted: {
 		type: Boolean,
 		default: false

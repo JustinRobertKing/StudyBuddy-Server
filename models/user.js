@@ -5,13 +5,13 @@ let userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
     minlength: 1,
     maxlength: 99
   },
   email: { // TODO: Need to add email validation
     type: String,
     required: true,
-    unique: true,
     minlength: 5,
     maxlength: 99
   },
@@ -24,7 +24,6 @@ let userSchema = new mongoose.Schema({
   classes: [String],
   major: {
     type: String,
-    required: true
   },
   img: String,
   bio: String,

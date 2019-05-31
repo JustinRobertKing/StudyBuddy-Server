@@ -21,8 +21,8 @@ router.get('/', (req, res) => {
 	})
 })
 
-// POST /session route - create a new session
-router.post('/', (req, res) => {
+// POST /session/create route - create a new session
+router.post('/create', (req, res) => {
 	db.Session.create(req.body)
 	.then(createdSession => {
 		res.send(createdSession)

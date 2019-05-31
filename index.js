@@ -44,11 +44,24 @@ app.use('/auth', expressJWT({
 app.use('/user', expressJWT({
 	secret: process.env.JWT_SECRET,
 	getToken: fromRequest
+}).unless({
+	path: [
+		{ url: '/user', methods: ['GET'] },
+		{ url: '/user/survey', methods: ['PUT'] },
+		{ url: '/user/bio', methods: ['PUT'] },
+		{ url: '/user/image', methods: ['PUT'] },
+	]
 }), require('./controllers/user'));
 
 app.use('/session', expressJWT({
 	secret: process.env.JWT_SECRET,
 	getToken: fromRequest
+}).unless({
+	path: [
+		{ url: '/session', methods: ['POST'] },
+		{ url: '/session/create', methods: ['POST'] },
+		{ url: '/session/update', methods: ['PUT'] },
+	]
 }), require('./controllers/session'));
 
 // This is the catch-all route. Ideally you don't get here unless you made a mistake on your front-end
